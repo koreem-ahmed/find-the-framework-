@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://dtc1ohk40ukob"]
+
+[ext_resource type="Script" uid="uid://gt0ymnprpoho" path="res://scripts/destroyer_bullet.gd" id="1_64wle"]
+[ext_resource type="Texture2D" uid="uid://bwnoxu3bq0knq" path="res://assets/Enemies/Destroyer/Charge_2.png" id="2_8bs3y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyomi"]
+atlas = ExtResource("2_8bs3y")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdu4c"]
+atlas = ExtResource("2_8bs3y")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ex1a"]
+atlas = ExtResource("2_8bs3y")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lc1qb"]
+atlas = ExtResource("2_8bs3y")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtb0w"]
+atlas = ExtResource("2_8bs3y")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s5nbh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kyomi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdu4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ex1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lc1qb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtb0w")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hnn4j"]
+radius = 3.0
+height = 20.0
+
+[node name="destroyer bullet" type="Area2D"]
+script = ExtResource("1_64wle")
+
+[node name="animation_bullet" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s5nbh")
+animation = &"new_animation"
+
+[node name="bullet_shape" type="Sprite2D" parent="."]
+texture = ExtResource("2_8bs3y")
+region_enabled = true
+region_rect = Rect2(0, 0, 62.4211, 64)
+
+[node name="bullet_shape2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_hnn4j")
