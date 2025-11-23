@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dngwr2ai6gcto"]
+
+[ext_resource type="Script" uid="uid://ctripxd35h4ue" path="res://scripts/heal.gd" id="1_iej0i"]
+[ext_resource type="Texture2D" uid="uid://cvmlkrhbphw3x" path="res://assets/poç¦o vermelha.png" id="2_8vb04"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5fh3v"]
+radius = 9.0
+
+[node name="heal" type="Node2D"]
+script = ExtResource("1_iej0i")
+
+[node name="heal" type="Sprite2D" parent="."]
+texture = ExtResource("2_8vb04")
+region_enabled = true
+region_rect = Rect2(0.179253, -0.0335622, 15.6934, 16.1838)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_5fh3v")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

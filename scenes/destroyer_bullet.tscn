@@ -44,30 +44,36 @@ animations = [{
 "loop": false,
 "name": &"idle",
 "speed": 8.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"new_animation",
-"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hnn4j"]
-radius = 3.0
+radius = 3.33333
 height = 20.0
 
-[node name="destroyer bullet" type="Area2D"]
+[node name="destroyer bullet" type="Node2D"]
 script = ExtResource("1_64wle")
 
 [node name="animation_bullet" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_s5nbh")
-animation = &"new_animation"
+animation = &"idle"
 
 [node name="bullet_shape" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_8bs3y")
 region_enabled = true
 region_rect = Rect2(0, 0, 62.4211, 64)
 
-[node name="bullet_shape2" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="bullet_shape2" type="CollisionShape2D" parent="Area2D"]
 rotation = 1.5708
+scale = Vector2(0.6, 0.6)
 shape = SubResource("CapsuleShape2D_hnn4j")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="animation_finished" from="animation_bullet" to="." method="_on_animation_bullet_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

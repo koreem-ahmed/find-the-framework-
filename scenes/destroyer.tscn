@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bdj1i58c1wapo"]
+[gd_scene load_steps=41 format=3 uid="uid://bdj1i58c1wapo"]
 
 [ext_resource type="Texture2D" uid="uid://dxrfjyxai2frr" path="res://assets/Enemies/Destroyer/Attack_1.png" id="1_57hv2"]
 [ext_resource type="Texture2D" uid="uid://cogyt66n2sg5p" path="res://assets/Enemies/Destroyer/Idle.png" id="1_k3e7o"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://ti17nd1qqu8e" path="res://scripts/destroyer.gd" id="1_xb5ef"]
 [ext_resource type="Texture2D" uid="uid://cfsbimmf8tcyw" path="res://assets/Enemies/Destroyer/Shutdown.png" id="3_xb5ef"]
 [ext_resource type="Texture2D" uid="uid://dhvvcu81gt5yt" path="res://assets/Enemies/Destroyer/Walk.png" id="5_x3l4q"]
+[ext_resource type="PackedScene" uid="uid://liyo2t4os03j" path="res://scenes/progress_bar.tscn" id="7_x3l4q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nmw6d"]
 atlas = ExtResource("1_57hv2")
@@ -250,7 +251,7 @@ radius = 12.0
 height = 84.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x3l4q"]
-radius = 270.897
+radius = 633.488
 
 [node name="destroyer" type="CharacterBody2D"]
 collision_layer = 4
@@ -258,7 +259,8 @@ collision_mask = 4
 script = ExtResource("1_xb5ef")
 
 [node name="animation_opp" type="AnimatedSprite2D" parent="."]
-position = Vector2(-5, -16)
+position = Vector2(-0.600001, -7.6)
+scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_x3l4q")
 animation = &"attacking_shot"
 autoplay = "idle"
@@ -266,27 +268,47 @@ frame = 7
 frame_progress = 1.0
 
 [node name="shape" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 9)
+position = Vector2(-0.600001, 0.400003)
+scale = Vector2(0.35, 0.35)
 shape = SubResource("CapsuleShape2D_nmw6d")
 
 [node name="detection area" type="Area2D" parent="."]
+position = Vector2(-0.6, -0.599998)
+scale = Vector2(0.35, 0.35)
 collision_layer = 8
 collision_mask = 8
 
 [node name="detection shape" type="CollisionShape2D" parent="detection area"]
+position = Vector2(3.8147e-06, 5.72205e-06)
+scale = Vector2(0.35, 0.35)
 shape = SubResource("CircleShape2D_x3l4q")
 
 [node name="shot_place" type="Marker2D" parent="."]
-position = Vector2(34, -13)
+position = Vector2(13, -7)
+scale = Vector2(0.35, 0.35)
 
 [node name="right" type="RayCast2D" parent="."]
-position = Vector2(14, 36)
+position = Vector2(11.4, 8.40001)
+scale = Vector2(0.35, 0.35)
 
 [node name="left" type="RayCast2D" parent="."]
-position = Vector2(-20, 36)
+position = Vector2(-7.6, 8.4)
+scale = Vector2(0.35, 0.35)
 
 [node name="attack_timer" type="Timer" parent="."]
 wait_time = 0.6
+
+[node name="ProgressBar" parent="." instance=ExtResource("7_x3l4q")]
+offset_left = -13.0
+offset_top = -27.0
+offset_right = 13.0
+offset_bottom = -18.0
+
+[node name="det_right" type="RayCast2D" parent="."]
+target_position = Vector2(77, 0)
+
+[node name="det_left" type="RayCast2D" parent="."]
+target_position = Vector2(-78, 0)
 
 [connection signal="animation_finished" from="animation_opp" to="." method="_on_animation_animation_finished"]
 [connection signal="body_entered" from="detection area" to="." method="_on_detection_area_body_entered"]
