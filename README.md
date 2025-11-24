@@ -1,23 +1,10 @@
-layer 1
---> player
---> floor
+# Find the Framework !!
+this game is about a hackcluber that don't have the ability to siege in this event so, he found this dangerous adveture to collect all the USBs and kill some enemies to get the wanted score !!
 
-layer 2
---> player
---> coins
+## controls
+moving -> wsad
+jump -> j, space
+attack -> k, click
 
-layer 3
---> enemy collision
---> bullet of the player
-
-layer 4
---> player
---> enemy detection
-
-layer 5
--->player
---> enemy's bullet
-
-layer 8
---> player
---> kill zone
+## How to win
+you sould kill some enemies and take all the USBs to get score 7 to win.
