@@ -23,3 +23,4 @@ func _process(delta: float) -> void:
 		self.visible = false
 		parent.death = true
 	
+	#lkjflsdkjlkfsjlkfsjlkjafds;lkasdfl;kjkjhkjhkhjk
